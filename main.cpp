@@ -23,12 +23,11 @@ int main(int, char const**)
 {
     // Create the main window
     sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
+    sf::View mView(sf::FloatRect(0, 0, 800, 600));
+    window.setView(mView);
 
-    // Set the Icon
-  
-    Button<float> Button1(sf::Vector2f(20,20), 25,50, sf::Color::Red, sf::Color::Blue,5);
-    
-    Button<float> Button2(sf::Vector2f(20,20), 25,20, sf::Color::Cyan, sf::Color::Blue,5);
+    Button<float> Button1(sf::Vector2f(800/2 - 150,100), 50,300, sf::Color::Red, sf::Color::Blue, mView, window,5);
+    //Button<float> Button2(sf::Vector2f(300,100), 25,70, sf::Color::Cyan, sf::Color::Blue,5);
     
     
     // Start the game loop
@@ -38,7 +37,8 @@ int main(int, char const**)
         sf::Event event;
         while (window.pollEvent(event))
         {
-             Button1.update(event);
+            Button1.update(event);
+           // Button2.update(event);
             // Close window : exit
             if (event.type == sf::Event::Closed)
             {
@@ -57,7 +57,7 @@ int main(int, char const**)
         window.clear();
 
         Button1.render(window);
-        Button2.render(window);
+       // Button2.render(window);
         // Update the window
         window.display();
     }
