@@ -2,8 +2,8 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include "Button.h"
-
-
+//#define NDEBUG
+#include <cassert>
 int main(int, char const**)
 {
     // Create the main window
@@ -17,15 +17,18 @@ int main(int, char const**)
     sf::RectangleShape MouseRec;
     MouseRec.setSize(sf::Vector2f(10,10));
     MouseRec.setFillColor(sf::Color::White);
-    
     MouseRec.setOrigin(10/2, 10/2);
-                 
+    
+    
+    sf::Font mFont;
+    mFont.loadFromFile("/Users/Thomas/Desktop/Fertige Projekte/Nameles/Nameless/Nameless/sansation.ttf");
     Button<float> Button1(sf::Vector2f(xauflösung/2 - 150,100), 50,300, sf::Color::Red, sf::Color::Blue, mView, window,5, MousePos.x, MousePos.y);
     Button<float> Button2(sf::Vector2f(xauflösung/2 - 150,200), 50,300, sf::Color::Red, sf::Color::Blue, mView, window,5,MousePos.x, MousePos.y);
     Button<float> Button3(sf::Vector2f(xauflösung/2 - 150,300), 50,300, sf::Color::Red, sf::Color::Blue, mView, window,5,MousePos.x, MousePos.y);
     Button<float> Button4(sf::Vector2f(xauflösung/2 - 150,400), 50,300, sf::Color::Red, sf::Color::Blue, mView, window,5,MousePos.x, MousePos.y);
    
     
+   
     
     
     // Start the game loop
@@ -56,13 +59,6 @@ int main(int, char const**)
             {
                 window.close();
             }
-            
-            if (sf::Event::Resized)
-            {
-                
-                
-            }
-           
         }
        
         // Clear screen
