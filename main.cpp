@@ -13,18 +13,17 @@ int main(int, char const**)
     sf::View mView(sf::FloatRect(0, 0, xauflösung, yauflösung));
     window.setView(mView);
     
-    sf::Vector2i test1;
- sf::Vector2f test2;
-    sf::RectangleShape test;
-    test.setSize(sf::Vector2f(10,10));
-    test.setFillColor(sf::Color::White);
+    sf::Vector2f MousePos;
+    sf::RectangleShape MouseRec;
+    MouseRec.setSize(sf::Vector2f(10,10));
+    MouseRec.setFillColor(sf::Color::White);
     
-    test.setOrigin(10/2, 10/2);
+    MouseRec.setOrigin(10/2, 10/2);
                  
-    Button<float> Button1(sf::Vector2f(xauflösung/2 - 150,100), 50,300, sf::Color::Red, sf::Color::Blue, mView, window,5, test2.x, test2.y);
-    Button<float> Button2(sf::Vector2f(xauflösung/2 - 150,200), 50,300, sf::Color::Red, sf::Color::Blue, mView, window,5,test2.x, test2.y);
-    Button<float> Button3(sf::Vector2f(xauflösung/2 - 150,300), 50,300, sf::Color::Red, sf::Color::Blue, mView, window,5,test2.x, test2.y);
-    Button<float> Button4(sf::Vector2f(xauflösung/2 - 150,400), 50,300, sf::Color::Red, sf::Color::Blue, mView, window,5,test2.x, test2.y);
+    Button<float> Button1(sf::Vector2f(xauflösung/2 - 150,100), 50,300, sf::Color::Red, sf::Color::Blue, mView, window,5, MousePos.x, MousePos.y);
+    Button<float> Button2(sf::Vector2f(xauflösung/2 - 150,200), 50,300, sf::Color::Red, sf::Color::Blue, mView, window,5,MousePos.x, MousePos.y);
+    Button<float> Button3(sf::Vector2f(xauflösung/2 - 150,300), 50,300, sf::Color::Red, sf::Color::Blue, mView, window,5,MousePos.x, MousePos.y);
+    Button<float> Button4(sf::Vector2f(xauflösung/2 - 150,400), 50,300, sf::Color::Red, sf::Color::Blue, mView, window,5,MousePos.x, MousePos.y);
    
     
     
@@ -32,21 +31,19 @@ int main(int, char const**)
     // Start the game loop
     while (window.isOpen())
     {
-      
-        test1.x = sf::Mouse::getPosition(window).x;
-        test1.y = sf::Mouse::getPosition(window).y;
+        MousePos = window.mapPixelToCoords(sf::Vector2i(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y));
+        MouseRec.setPosition(MousePos.x, MousePos.y);
         
-       
-        test2 = window.mapPixelToCoords(test1);
-        test.setPosition(test2.x, test2.y);
+        
+        
         // Process events
         sf::Event event;
         while (window.pollEvent(event))
         {
-            Button1.update(event);
-            Button2.update(event);
-            Button3.update(event);
-            Button4.update(event);
+            Button1.eventHandling(event);
+            Button2.eventHandling(event);
+            Button3.eventHandling(event);
+            Button4.eventHandling(event);
           
             // Close window : exit
             if (event.type == sf::Event::Closed)
@@ -75,7 +72,7 @@ int main(int, char const**)
         Button2.render(window);
         Button3.render(window);
         Button4.render(window);
-         window.draw(test);
+         window.draw(MouseRec);
       
         // Update the window
         window.display();

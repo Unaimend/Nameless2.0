@@ -12,7 +12,7 @@ public:
     Button(Button&) = delete;                       //Copy-Constructor deleted, because of unwanted copies
     
     void render(sf::RenderWindow& window);
-    void update(sf::Event& event);
+    void eventHandling(sf::Event& event);
     void update(float frametime);
     void setWindow(sf::RenderWindow& window){mWindow = &window;};
     bool isClicked();
@@ -23,13 +23,13 @@ private:
     sf::Event           mEvent;                     //Is mouse clicked?
     sf::View            *mView;
     sf::RenderWindow    *mWindow;
-    float               *mToCheckX;                   //Holds mouse coordinates
+    float               *mToCheckX;                 //Holds mouse coordinates
     float               *mToCheckY;
     T                   mHeigth;                    //Height of the Button
     T                   mWidth;                     //Width of the Button
-    bool                mIsClicked         =   0;
+    bool                mIsClicked         =   0;   //True if Button was clicked, should be true for one frame
     std::string         mString;
-    sf::Text            mText;
+    sf::Text            mText;                      //Text of the Button
 };
 
 
@@ -129,6 +129,8 @@ mPos(topleft), mHeigth(heigth), mWidth(width), mTexture(texture), mView(&view), 
     mRectangleShape.setSize(sf::Vector2f(mWidth,mHeigth));
     mRectangleShape.setTexture(&mTexture);
     
+    mText.setString(mString);
+    
 };
 
 
@@ -141,7 +143,7 @@ template<typename T> void Button<T>::render(sf::RenderWindow& window)
 
 
 
-template<typename T> void Button<T>::update(sf::Event& event)
+template<typename T> void Button<T>::eventHandling(sf::Event& event)
 {
     mEvent = event;
     isClicked();
@@ -152,10 +154,8 @@ template<typename T> void Button<T>::update(sf::Event& event)
 
 template<typename T> bool Button<T>::isClicked()
 {
-    
     if (mEvent.type == sf::Event::MouseButtonPressed && mEvent.mouseButton.button == sf::Mouse::Left)
     {
-        
         if ((*mToCheckY > mPos.y) &&
             (*mToCheckY < mPos.y + mHeigth))
         {
