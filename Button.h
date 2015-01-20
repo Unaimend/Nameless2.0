@@ -32,6 +32,7 @@ private:
     std::string         mString;
     sf::Font            mFont;
     sf::Text            mText;                      //Text of the Button
+    sf::FloatRect       mTextGloBounds;
 };
 
 
@@ -105,10 +106,15 @@ mButPos(topleft), mHeigth(heigth), mWidth(width), mView(&view), mWindow(&window)
     mRectangleShape.setFillColor(fill);
     mRectangleShape.setOutlineColor(outline);
     
+    
     mText.setString(mString);
     mText.setFont(mFont);
-    mText.setCharacterSize(20);
-    mText.setPosition(mButPos.x, mButPos.y);
+    mText.setCharacterSize(200);
+    mText.setScale(0.075*2, 0.075*2);
+    
+    mTextGloBounds = mText.getGlobalBounds();
+    mText.setOrigin(mTextGloBounds.left/2, mTextGloBounds.height/2);
+    mText.setPosition(mButPos.x + mRectangleShape.getGlobalBounds().width/2.0f, mButPos.y);
     
 };
 
@@ -138,9 +144,6 @@ mButPos(topleft), mHeigth(heigth), mWidth(width), mTexture(texture), mView(&view
     mText.setFont(mFont);
     mText.setCharacterSize(20);
     mText.setString(mString);
-    
-    
-    
 };
 
 
@@ -175,7 +178,7 @@ template<typename T> bool Button<T>::isClicked()
                 (*mToCheckX < mButPos.x + mWidth))
             {
                 mIsClicked = true;
-                std::cout << "PETER" << std::endl;
+                //std::cout << "PETER" << std::endl;
             }
             else
             {

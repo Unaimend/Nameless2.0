@@ -27,8 +27,7 @@ int main(int, char const**)
     Button<float> Button3(sf::Vector2f(xauflösung/2 - 150,300), 50,300, sf::Color::Red, sf::Color::Blue, mView, window,5,MousePos.x, MousePos.y);
     Button<float> Button4(sf::Vector2f(xauflösung/2 - 150,400), 50,300, sf::Color::Red, sf::Color::Blue, mView, window,5,MousePos.x, MousePos.y);
    
-    
-   
+  
     
     
     // Start the game loop
