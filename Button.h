@@ -7,9 +7,9 @@ template <typename T> class Button
 {
 public:
     Button(sf::Vector2f topleft, T width, T heigth, sf::Color outline, sf::Color fill, sf::View &view, sf::RenderWindow &window ,float thickness, float &xcheck, float& ycheck);
-    Button(sf::Vector2f topleft, T width, T heigth, sf::Color outline, sf::Color fill, sf::View &view, sf::RenderWindow &window ,float thickness, std::string string, sf::Font font);
+    Button(sf::Vector2f topleft, T width, T heigth, sf::Color outline, sf::Color fill, sf::View &view, sf::RenderWindow &window ,float thickness, float &xcheck, float& ycheck, std::string string, sf::Font font);
     Button(sf::Vector2f topleft, T width, T heigth, sf::Texture texture, sf::View &view, sf::RenderWindow &window, float &xcheck, float& ycheck);
-    Button(sf::Vector2f topleft, T width, T heigth, sf::Texture texture, sf::View &view, sf::RenderWindow &window, std::string string, sf::Font font);
+    Button(sf::Vector2f topleft, T width, T heigth, sf::Texture texture, sf::View &view, sf::RenderWindow &window, float &xceck, float &ycheck, std::string string, sf::Font font);
     Button(Button&) = delete;                       //Copy-Constructor deleted, because of unwanted copies
     
     void render(sf::RenderWindow& window);
@@ -96,8 +96,8 @@ mButPos(topleft), mHeigth(heigth), mWidth(width), mView(&view), mWindow(&window)
 
 
 template<typename T> Button<T>::Button(sf::Vector2f topleft, T heigth, T width, sf::Color outline, sf::Color fill, sf::View &view,
-                                       sf::RenderWindow &window, float thickness, std::string string, sf::Font font):
-mButPos(topleft), mHeigth(heigth), mWidth(width), mView(&view), mWindow(&window), mString(string), mFont(font)
+                                       sf::RenderWindow &window, float thickness, float &xcheck, float& ycheck, std::string string, sf::Font font ):
+mButPos(topleft), mHeigth(heigth), mWidth(width), mView(&view), mWindow(&window), mToCheckX(&xcheck), mToCheckY(&ycheck) ,mString(string), mFont(font)
 {
     mRectangleShape.setPosition(mButPos);
     mRectangleShape.setSize(sf::Vector2f(mWidth,mHeigth));
@@ -115,8 +115,9 @@ mButPos(topleft), mHeigth(heigth), mWidth(width), mView(&view), mWindow(&window)
 
 
 template<typename T> Button<T>::Button(sf::Vector2f topleft, T heigth, T width, sf::Texture texture, sf:: View &view,
-                                       sf::RenderWindow &window, float &xcheck, float& ycheck ):
-mButPos(topleft), mHeigth(heigth), mWidth(width), mTexture(texture), mView(&view), mWindow(&window, mToCheckX(xcheck), mToCheckY(ycheck))
+                                       sf::RenderWindow &window, float &xcheck, float& ycheck):
+mButPos(topleft), mHeigth(heigth), mWidth(width), mTexture(texture), mView(&view), mWindow(&window), mToCheckX(&xcheck), mToCheckY(&ycheck)
+
 {
     mRectangleShape.setPosition(mButPos);
     mRectangleShape.setSize(sf::Vector2f(mWidth,mHeigth));
@@ -127,17 +128,16 @@ mButPos(topleft), mHeigth(heigth), mWidth(width), mTexture(texture), mView(&view
 
 
 template<typename T> Button<T>::Button(sf::Vector2f topleft, T heigth, T width, sf::Texture texture, sf:: View &view,
-                                       sf::RenderWindow &window, std::string string, sf::Font font ):
-mButPos(topleft), mHeigth(heigth), mWidth(width), mTexture(texture), mView(&view), mWindow(&window), mString(string), mFont(font)
+                                       sf::RenderWindow &window, float &xckeck, float &ycheck ,std::string string, sf::Font font ):
+mButPos(topleft), mHeigth(heigth), mWidth(width), mTexture(texture), mView(&view), mWindow(&window), mToCheckX(&xckeck), mToCheckY(&ycheck),mString(string), mFont(font)
 {
     mRectangleShape.setPosition(mButPos);
     mRectangleShape.setSize(sf::Vector2f(mWidth,mHeigth));
     mRectangleShape.setTexture(&mTexture);
     
-    mText.setString(mString);
     mText.setFont(mFont);
     mText.setCharacterSize(20);
-    
+    mText.setString(mString);
     
     
     
@@ -148,6 +148,7 @@ mButPos(topleft), mHeigth(heigth), mWidth(width), mTexture(texture), mView(&view
 template<typename T> void Button<T>::render(sf::RenderWindow& window)
 {
     window.draw(mRectangleShape);
+    window.draw(mText);
     
 };
 
