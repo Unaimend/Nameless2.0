@@ -21,24 +21,18 @@ int main(int, char const**)
 	MouseRec.setSize(sf::Vector2f(10, 10));
 	MouseRec.setFillColor(sf::Color::White);
 	MouseRec.setOrigin(10 / 2, 10 / 2);
-	//OSX
-	if (system("cls"))
-	{
-		CmdLine.setFont("/Users/Thomas/Desktop/Fertige Projekte/Nameles/Nameless/Nameless/sansation.ttf");
-		mFont.loadFromFile("/Users/Thomas/Desktop/Fertige Projekte/Nameles/Nameless/Nameless/sansation.ttf");
-	}
-	
-	//WINDOWS
-	//Kleiner Hack um die Schrift auf Windows zu laden. Returned -1 da unbekannt und die Funtion wird aus-
-	//geführt, auf mac ist der befehl bekannt und und sollte daher 0 returnen und die funktion nicht aufrufen	
-	if (system("clear")) 
-	{					
-		CmdLine.setFont("C:\\Users\\Programming\\Documents\\GitHub\\Nameless2.0\\sansation.ttf");
-		mFont.loadFromFile("C:\\Users\\Programming\\Documents\\GitHub\\Nameless2.0\\sansation.ttf");
-	}
-	
+		
 
+	
+#ifdef __APPLE__
+    
+    CmdLine.setFont("/Users/Thomas/Desktop/Fertige Projekte/Nameles/Nameless/Nameless/sansation.ttf");
+    mFont.loadFromFile("/Users/Thomas/Desktop/Fertige Projekte/Nameles/Nameless/Nameless/sansation.ttf");
+#elif 
+    mdLine.setFont("C:\\Users\\Programming\\Documents\\GitHub\\Nameless2.0\\sansation.ttf");
+    mFont.loadFromFile("C:\\Users\\Programming\\Documents\\GitHub\\Nameless2.0\\sansation.ttf");
 
+#endif
   
     Button<float> Button1(sf::Vector2f(xauflösung/2 - 150,100), 50,300, sf::Color::Red, sf::Color::Blue, mView, window,5, MousePos.x, MousePos.y, "Spielen", mFont);
     Button<float> Button2(sf::Vector2f(xauflösung/2 - 150,200), 50,300, sf::Color::Red, sf::Color::Blue, mView, window,5,MousePos.x, MousePos.y, "Optionen", mFont);
