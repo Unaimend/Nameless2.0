@@ -179,7 +179,7 @@ template<typename T> bool Button<T>::isClicked()
                 (*mToCheckX < mButPos.x + mWidth))
             {
                 mIsClicked = true;
-                //std::cout << "PETER" << std::endl;
+           
             }
             else
             {

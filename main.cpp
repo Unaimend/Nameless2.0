@@ -7,8 +7,8 @@
 int main(int, char const**)
 {
     // Create the main window
-    int xauflösung = 1680;
-    int yauflösung = 1456;
+    int xauflösung = 1200;
+    int yauflösung = 700;
     sf::RenderWindow window(sf::VideoMode(xauflösung, yauflösung), "SFML window");
     sf::View mView(sf::FloatRect(0, 0, xauflösung, yauflösung));
     window.setView(mView);
@@ -22,6 +22,11 @@ int main(int, char const**)
     
     sf::Font mFont;
     mFont.loadFromFile("/Users/Thomas/Desktop/Fertige Projekte/Nameles/Nameless/Nameless/sansation.ttf");
+	if (system("clear")) //Kleiner Hack um die Schrift auf Windows zu laden. Reutrned -1 da unbekannt und die Funtion wird aus-
+	{					//geführt, auf mac ist der befehl ubekannt und und sollte daher 0 returnen und die funktion nicht aufrufen	
+		mFont.loadFromFile("C:\\Users\\Programming\\Documents\\GitHub\\Nameless2.0\\sansation.ttf");		
+	}
+
     Button<float> Button1(sf::Vector2f(xauflösung/2 - 150,100), 50,300, sf::Color::Red, sf::Color::Blue, mView, window,5, MousePos.x, MousePos.y, "Spielen", mFont);
     Button<float> Button2(sf::Vector2f(xauflösung/2 - 150,200), 50,300, sf::Color::Red, sf::Color::Blue, mView, window,5,MousePos.x, MousePos.y, "Optionen", mFont);
     Button<float> Button3(sf::Vector2f(xauflösung/2 - 150,300), 50,300, sf::Color::Red, sf::Color::Blue, mView, window,5,MousePos.x, MousePos.y, "Credits", mFont);
