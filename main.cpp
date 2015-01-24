@@ -36,7 +36,7 @@ int main(int, char const**)
         MousePos = window.mapPixelToCoords(sf::Vector2i(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y));
         MouseRec.setPosition(MousePos.x, MousePos.y);
         
-        
+        //PETER
         
         // Process events
         sf::Event event;
