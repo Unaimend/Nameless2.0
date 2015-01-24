@@ -23,7 +23,7 @@ int main(int, char const**)
     sf::Font mFont;
     mFont.loadFromFile("/Users/Thomas/Desktop/Fertige Projekte/Nameles/Nameless/Nameless/sansation.ttf");
 	if (system("clear")) //Kleiner Hack um die Schrift auf Windows zu laden. Reutrned -1 da unbekannt und die Funtion wird aus-
-	{					//geführt, auf mac ist der befehl ubekannt und und sollte daher 0 returnen und die funktion nicht aufrufen	
+	{					//geführt, auf mac ist der befehl bekannt und und sollte daher 0 returnen und die funktion nicht aufrufen	
 		mFont.loadFromFile("C:\\Users\\Programming\\Documents\\GitHub\\Nameless2.0\\sansation.ttf");		
 	}
 

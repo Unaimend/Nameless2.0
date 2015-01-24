@@ -27,7 +27,7 @@ private:
     sf::RenderWindow    *mWindow;
     float               *mToCheckX;                 //Holds mouse coordinates
     float               *mToCheckY;
-    T                   mHeigth;                    //Height of the Button
+    T                   mHeigth;                    //Height 4of the Button
     T                   mWidth;                     //Width of the Button
     bool                mIsClicked         =   0;   //True if Button was clicked, should be true for one frame
     std::string         mString;
