@@ -22,10 +22,10 @@ int main(int, char const**)
     
     sf::Font mFont;
     mFont.loadFromFile("/Users/Thomas/Desktop/Fertige Projekte/Nameles/Nameless/Nameless/sansation.ttf");
-    Button<float> Button1(sf::Vector2f(xauflösung/2 - 150,100), 50,300, sf::Color::Red, sf::Color::Blue, mView, window,5, MousePos.x, MousePos.y, "PETER", mFont);
-    Button<float> Button2(sf::Vector2f(xauflösung/2 - 150,200), 50,300, sf::Color::Red, sf::Color::Blue, mView, window,5,MousePos.x, MousePos.y);
-    Button<float> Button3(sf::Vector2f(xauflösung/2 - 150,300), 50,300, sf::Color::Red, sf::Color::Blue, mView, window,5,MousePos.x, MousePos.y);
-    Button<float> Button4(sf::Vector2f(xauflösung/2 - 150,400), 50,300, sf::Color::Red, sf::Color::Blue, mView, window,5,MousePos.x, MousePos.y);
+    Button<float> Button1(sf::Vector2f(xauflösung/2 - 150,100), 50,300, sf::Color::Red, sf::Color::Blue, mView, window,5, MousePos.x, MousePos.y, "Spielen", mFont);
+    Button<float> Button2(sf::Vector2f(xauflösung/2 - 150,200), 50,300, sf::Color::Red, sf::Color::Blue, mView, window,5,MousePos.x, MousePos.y, "Optionen", mFont);
+    Button<float> Button3(sf::Vector2f(xauflösung/2 - 150,300), 50,300, sf::Color::Red, sf::Color::Blue, mView, window,5,MousePos.x, MousePos.y, "Credits", mFont);
+    Button<float> Button4(sf::Vector2f(xauflösung/2 - 150,400), 50,300, sf::Color::Red, sf::Color::Blue, mView, window,5,MousePos.x, MousePos.y, "Beenden", mFont);
    
   
     
@@ -54,7 +54,7 @@ int main(int, char const**)
             }
 
             // Espace pressed : exit
-            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
+            if ((event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) || Button4.getStatus())
             {
                 window.close();
             }

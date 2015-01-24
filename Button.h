@@ -17,6 +17,7 @@ public:
     void update(float frametime);
     void setWindow(sf::RenderWindow& window){mWindow = &window;};
     bool isClicked();
+    bool getStatus(){return mIsClicked;};
 private:
     sf::RectangleShape  mRectangleShape;
     sf::Vector2f        mButPos;                       //Button Position.
@@ -114,7 +115,7 @@ mButPos(topleft), mHeigth(heigth), mWidth(width), mView(&view), mWindow(&window)
     
     mTextGloBounds = mText.getGlobalBounds();
     mText.setOrigin(mTextGloBounds.left/2, mTextGloBounds.height/2);
-    mText.setPosition(mButPos.x + mRectangleShape.getGlobalBounds().width/2.0f, mButPos.y);
+    mText.setPosition(mButPos.x, mButPos.y);
     
 };
 
