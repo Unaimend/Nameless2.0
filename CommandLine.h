@@ -4,14 +4,20 @@
 #include <stdio.h>
 #include <iostream>
 #include "SFML/Graphics.hpp"
-
+#include <string>
 class CommandLine
 {
 public:
-    CommandLine();
+	CommandLine();
+    CommandLine(std::string font);
     ~CommandLine();
     void render(sf::RenderWindow& window);
     void eventHandling(sf::Event event);
+	void setFont(std::string font)
+	{
+		mFont.loadFromFile(font);
+		mText.setFont(mFont);
+	};
 private:
     bool mConsoleOpen = false;
     sf::Text                    mText;
